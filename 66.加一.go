@@ -8,17 +8,17 @@ package leetcode
 
 // @lc code=start
 func plusOne(digits []int) []int {
-	a := 1
-
 	for i := len(digits) - 1; i >= 0; i-- {
-		a += digits[i]
-		digits[i] = a % 10
-		a /= 10
+		if digits[i] < 9 {
+			digits[i]++
+			return digits
+		}
+
+		digits[i] = 0
 	}
 
-	if a > 0 {
-		digits = append([]int{a}, digits...)
-	}
+	digits = make([]int, len(digits)+1)
+	digits[0] = 1
 
 	return digits
 }
