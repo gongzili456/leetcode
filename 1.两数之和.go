@@ -8,16 +8,14 @@ package leetcode
 
 // @lc code=start
 func twoSum(nums []int, target int) []int {
-	if len(nums) < 1 {
-		return nil
-	}
+	m := map[int]int{}
 
-	for i := 0; i < len(nums)-1; i++ {
-		for j := i + 1; j < len(nums); j++ {
-			if nums[i]+nums[j] == target {
-				return []int{i, j}
-			}
+	for i, n := range nums {
+		t := target - n
+		if p, ok := m[t]; ok {
+			return []int{p, i}
 		}
+		m[n] = i
 	}
 
 	return nil
