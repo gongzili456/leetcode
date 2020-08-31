@@ -29,7 +29,7 @@ func longestPalindrome(s string) string {
 
 	// 现在矩阵如下所示
 
-	// j j j j j j
+	//   j j j j j
 	// T 0 0 0 0 0 i
 	// 0 T 0 0 0 0 i
 	// 0 0 T 0 0 0 i
