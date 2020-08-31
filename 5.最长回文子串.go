@@ -17,13 +17,26 @@ func longestPalindrome(s string) string {
 
 	// 最大长度，起始位置
 	max, begin := 1, 0
+
+	// 二维数组矩阵
 	dp := make([][]bool, n)
 
+	// 从 0,0 到 i,i 的线值为 true，因为单个字符自己就是一个回文字符串
 	for i := 0; i < n; i++ {
 		dp[i] = make([]bool, n)
 		dp[i][i] = true
 	}
 
+	// 现在矩阵如下所示
+
+	// j j j j j j
+	// T 0 0 0 0 0 i
+	// 0 T 0 0 0 0 i
+	// 0 0 T 0 0 0 i
+	// 0 0 0 T 0 0 i
+	// 0 0 0 0 T 0 i
+	// 0 0 0 0 0 T
+	// 只需要处理右上部分的矩阵即可
 	for j := 1; j < n; j++ {
 		for i := 0; i < j; i++ {
 			// 两头不相同，则不是回文
