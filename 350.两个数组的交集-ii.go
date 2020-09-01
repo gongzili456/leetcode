@@ -9,20 +9,20 @@ package leetcode
 // @lc code=start
 func intersect(nums1 []int, nums2 []int) []int {
 	if len(nums1) > len(nums2) {
-		nums1, nums2 = nums2, nums1
+		return intersect(nums2, nums1)
 	}
+
 	dic := map[int]int{}
-
-	for _, v := range nums1 {
-		dic[v]++
-	}
-
 	ans := []int{}
 
-	for i := 0; i < len(nums2); i++ {
-		if v, ok := dic[nums2[i]]; ok && v > 0 {
-			dic[nums2[i]]--
-			ans = append(ans, nums2[i])
+	for _, n := range nums1 {
+		dic[n]++
+	}
+
+	for _, n := range nums2 {
+		if v, ok := dic[n]; ok && v > 0 {
+			dic[n]--
+			ans = append(ans, n)
 		}
 	}
 

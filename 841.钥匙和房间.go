@@ -8,14 +8,13 @@ package leetcode
 
 // @lc code=start
 func canVisitAllRooms(rooms [][]int) bool {
-	vis := make([]bool, len(rooms))
-	total := 0
+	n, total := len(rooms), 0
+	vis := make([]bool, n)
 
 	var dfs func(x int)
 	dfs = func(x int) {
 		vis[x] = true
 		total++
-
 		for _, r := range rooms[x] {
 			if !vis[r] {
 				dfs(r)
@@ -24,7 +23,7 @@ func canVisitAllRooms(rooms [][]int) bool {
 	}
 
 	dfs(0)
-	return total == len(rooms)
+	return n == total
 }
 
 // @lc code=end
