@@ -22,52 +22,46 @@ type TreeNode struct {
  *     Right *TreeNode
  * }
  */
-//  递归法
-// func inorderTraversal(root *TreeNode) []int {
-// 	if root == nil {
-// 		return []int{}
-// 	}
-
-// 	// 左跟右
-// 	ans := []int{}
-
-// 	var helper func(node *TreeNode)
-// 	helper = func(node *TreeNode) {
-// 		if node.Left != nil {
-// 			helper(node.Left)
-// 		}
-
-// 		ans = append(ans, node.Val)
-
-// 		if node.Right != nil {
-// 			helper(node.Right)
-// 		}
-// 	}
-
-// 	helper(root)
-
-// 	return ans
-// }
-
-// 辅助栈
 func inorderTraversal(root *TreeNode) []int {
+	// 中序，左跟右
 	stack := []*TreeNode{}
 	ans := []int{}
 
-	current := root
-	for current != nil || len(stack) > 0 {
-		// 将所有左子节点压栈
-		for current != nil {
-			stack = append(stack, current)
-			current = current.Left
+	for root != nil ||  len(stack) > 0 {
+		// 每次都要先检查当前节点所有的左子树
+		for root != nil {
+			stack = append(stack, root)
+			root = root.Left
 		}
 
-		current = stack[len(stack)-1]
+		// 然后再处理跟节点
+		root = stack[len(stack)-1]
 		stack = stack[:len(stack)-1]
-		ans = append(ans, current.Val)
+		ans = append(ans, root.Val)
 
-		current = current.Right
+		// 然后再处理右子树
+		root = root.Right
 	}
+
+	return ans
+}
+
+func inorderTraversal2(root *TreeNode) []int {
+	// 中序，左跟右
+	ans := []int{}
+
+	var helper func(r *TreeNode)
+	helper = func (r *TreeNode)  {
+		if r == nil {
+			return
+		}
+
+		helper(r.Left)
+		ans = append(ans, r.Val)
+		helper(r.Right)
+	}
+
+	helper(root)
 	return ans
 }
 
