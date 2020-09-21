@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 package leetcode
 
+=======
+>>>>>>> -==0-
 /*
  * @lc app=leetcode.cn id=37 lang=golang
  *
@@ -7,6 +10,7 @@ package leetcode
  */
 
 // @lc code=start
+<<<<<<< HEAD
 func solveSudoku(board [][]byte) {
 	var line, column [9][9]bool
 	var block [3][3][9]bool
@@ -52,3 +56,10 @@ func solveSudoku(board [][]byte) {
 }
 
 // @lc code=end
+=======
+func solveSudoku(board [][]byte)  {
+
+}
+// @lc code=end
+
+>>>>>>> -==0-

@@ -8,35 +8,36 @@ package leetcode
 
 // @lc code=start
 func numIslands(grid [][]byte) int {
-	if len(grid) <= 0 || len(grid[0]) <= 0 {
+	if grid == nil || len(grid) == 0 {
 		return 0
 	}
 
-	nx, ny := len(grid), len(grid[0])
+	nr, nc := len(grid), len(grid[0])
+	islands := 0
 
-	var dfs func(x, y int)
-	dfs = func(x, y int) {
-		if x < 0 || x >= nx || y < 0 || y >= ny || grid[x][y] != '1' {
+	var dfs func(r, c int)
+	dfs = func(r, c int) {
+		if r < 0 || r >= nr || c < 0 || c >= nc || grid[r][c] == '0' {
 			return
 		}
 
-		grid[x][y] = '0'
-		dfs(x+1, y)
-		dfs(x, y+1)
-		dfs(x-1, y)
-		dfs(x, y-1)
+		grid[r][c] = '0'
+		dfs(r+1, c)
+		dfs(r-1, c)
+		dfs(r, c+1)
+		dfs(r, c-1)
 	}
 
-	ans := 0
-	for i := 0; i < nx; i++ {
-		for j := 0; j < ny; j++ {
-			if grid[i][j] == '1' {
-				ans++
-				dfs(i, j)
+	for r := 0; r < nr; r++ {
+		for c := 0; c < nc; c++ {
+			if grid[r][c] == '1' {
+				islands++
+				dfs(r, c)
 			}
 		}
 	}
-	return ans
+
+	return islands
 }
 
 // @lc code=end
